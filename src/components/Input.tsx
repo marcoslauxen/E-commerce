@@ -1,14 +1,14 @@
-export default function Input() {
-  interface InputProps {
-    event: React.FormEvent<HTMLFormElement>;
-  }
+import useCart from '../data/hooks/useCart';
 
-  const handleSubmit = (event: InputProps['event']) => {
-    event.preventDefault();
+export default function Input() {
+  const { search, setSearch } = useCart();
+
+  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setSearch(event.target.value);
   };
 
   return (
-    <form className="form relative w-1/2" onSubmit={handleSubmit}>
+    <form className="form relative w-1/2">
       <button className="absolute left-1 -translate-y-1/2 top-1/2 p-1">
         <svg
           width="17"
@@ -28,11 +28,15 @@ export default function Input() {
           ></path>
         </svg>
       </button>
+
       <input
         className="input w-full rounded-none px-8 py-3 border-0 border-b-2 border-gray-400 outline-none placeholder-gray-400 text-white bg-transparent transition-all duration-300"
         placeholder="Pesquisar..."
         type="text"
+        value={search}
+        onChange={handleChange}
       />
+
       <button
         type="reset"
         className="absolute right-3 -translate-y-1/2 top-1/2 p-1"

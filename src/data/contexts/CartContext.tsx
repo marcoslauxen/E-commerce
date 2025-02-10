@@ -1,23 +1,26 @@
-import { createContext, useEffect, useState } from "react";
-import CartItem from "../model/CartItem";
-import useLocalStorage from "../hooks/useLocalStorage";
-import Product from "../model/Product";
+import { createContext, useEffect, useState } from 'react';
+import CartItem from '../model/CartItem';
+import useLocalStorage from '../hooks/useLocalStorage';
+import Product from '../model/Product';
 
 interface CartContextProps {
   items: CartItem[];
   quantityOfItems: number;
   add: (item: Product) => void;
   remove: (item: Product) => void;
+  search: string;
+  setSearch: (value: string) => void;
 }
 
 const CartContext = createContext<CartContextProps>({} as CartContextProps);
 
 export function CartProvider(props: { children: React.ReactNode }) {
   const [items, setItems] = useState<CartItem[]>([]);
+  const [search, setSearch] = useState('');
   const { set, get } = useLocalStorage();
 
   useEffect(() => {
-    const carrinho = get("carrinho");
+    const carrinho = get('carrinho');
     if (carrinho) {
       setItems(carrinho);
     }
@@ -49,7 +52,7 @@ export function CartProvider(props: { children: React.ReactNode }) {
 
   function changeItems(newItems: CartItem[]) {
     setItems(newItems);
-    set("carrinho", newItems);
+    set('carrinho', newItems);
   }
 
   return (
@@ -58,6 +61,8 @@ export function CartProvider(props: { children: React.ReactNode }) {
         items,
         add,
         remove,
+        search,
+        setSearch,
         get quantityOfItems() {
           return items.reduce((total, item) => total + item.quantity, 0);
         },
