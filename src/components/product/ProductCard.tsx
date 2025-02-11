@@ -4,6 +4,9 @@ import Product from '@/data/model/Product';
 import Image from 'next/image';
 import { useEffect, useState } from 'react';
 import Modal from '../Modal';
+import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
+import FavoriteIcon from '@mui/icons-material/Favorite';
+import useLocalStorage from '@/data/hooks/useLocalStorage';
 
 export interface ProductCardProps {
   product: Product;
@@ -11,21 +14,37 @@ export interface ProductCardProps {
 
 export default function ProductCard({ product }: ProductCardProps) {
   const { add } = useCart();
+  const { get, set } = useLocalStorage();
   const [cart, setCart] = useState<Product[]>([]);
   const [isOpenModal, setIsOpenModal] = useState(false);
+  const [isFavorite, setIsFavorite] = useState(false);
 
   useEffect(() => {
-    const savedCart = localStorage.getItem('cart');
-    if (savedCart) {
-      setCart(JSON.parse(savedCart));
-    }
-  }, []);
+    const storedFavorites: string[] = get('favorites') || [];
+    setIsFavorite(storedFavorites.includes(product.id.toString()));
+  }, [get, product.id]);
 
   const handleAddToCart = () => {
     const updatedCart = [...cart, product];
     setCart(updatedCart);
-    localStorage.setItem('cart', JSON.stringify(updatedCart));
+    set('cart', updatedCart);
     add(product);
+  };
+
+  const toggleFavorite = () => {
+    let storedFavorites: string[] = get('favorites') || [];
+
+    if (storedFavorites.includes(product.id.toString())) {
+      storedFavorites = storedFavorites.filter(
+        (id) => id !== product.id.toString()
+      );
+      setIsFavorite(false);
+    } else {
+      storedFavorites.push(product.id.toString());
+      setIsFavorite(true);
+    }
+
+    set('favorites', storedFavorites);
   };
 
   const handleOpenModal = () => setIsOpenModal(true);
@@ -34,6 +53,19 @@ export default function ProductCard({ product }: ProductCardProps) {
   return (
     <>
       <div className="w-56 md:w-60 bg-zinc-900 rounded-lg shadow-md overflow-hidden transform transition-all duration-300 hover:scale-105">
+        <div className="flex justify-between p-2">
+          <button
+            onClick={toggleFavorite}
+            className="text-white text-2xl cursor-pointer"
+          >
+            {isFavorite ? (
+              <FavoriteIcon className="text-red-500" />
+            ) : (
+              <FavoriteBorderIcon />
+            )}
+          </button>
+        </div>
+
         <div className="flex justify-center p-2">
           <div className="w-[200px] h-[200px] relative bg-zinc-900 rounded-md">
             <Image

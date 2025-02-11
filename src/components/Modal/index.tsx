@@ -1,3 +1,4 @@
+import HighlightOffIcon from '@mui/icons-material/HighlightOff';
 import Image from 'next/image';
 import { ReactNode } from 'react';
 
@@ -24,9 +25,16 @@ export default function Modal({
       onClick={onClose}
     >
       <div
-        className="bg-white p-6 sm:p-8 rounded-lg shadow-lg w-full max-w-3xl flex flex-col sm:flex-row items-center gap-6"
+        className="relative bg-white p-6 sm:p-8 rounded-lg shadow-lg w-full max-w-3xl flex flex-col sm:flex-row items-center gap-6"
         onClick={(e) => e.stopPropagation()}
       >
+        <button
+          onClick={onClose}
+          className="absolute top-2 right-2 p-2 rounded-full text-gray-500 transition"
+        >
+          <HighlightOffIcon className="w-6 h-6" />
+        </button>
+
         <div className="w-[250px] h-[250px] flex items-center justify-center bg-white rounded-md">
           <Image
             src={imageUrl}
