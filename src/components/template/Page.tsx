@@ -27,7 +27,7 @@ export default function Page({ children, className }: PageProps) {
     <div className="flex flex-col min-h-screen">
       <Header />
       <main
-        className={`w-full max-w-screen-xl mx-auto flex-1 py-10 px-4 mb-2 ${
+        className={`w-full max-w-screen-2xl mx-auto flex-1 py-10 px-4 ${
           className ?? ''
         }`}
       >

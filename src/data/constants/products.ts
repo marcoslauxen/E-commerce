@@ -6,6 +6,10 @@ import Airpods from '../../../public/images/airpods.png';
 import AppleWatch from '../../../public/images/apple_watch.png';
 import Cadeira from '../../../public/images/cadeira.png';
 import Playstation from '../../../public/images/playstation.png';
+import NintendoSwitch from '../../../public/images/nintendo_switch.png';
+import Alexa from '../../../public/images/alexa.png';
+import XboxSeriesX from '../../../public/images/xbox.png';
+import NotebookDell from '../../../public/images/notebook_dell.png';
 
 const products: Product[] = [
   {
@@ -65,6 +69,42 @@ const products: Product[] = [
       'O PlayStation 5 leva a experiência dos videogames para outro nível. Com suporte a gráficos em 4K, Ray Tracing e alta taxa de quadros, proporciona realismo e fluidez incomparáveis. Equipado com um SSD ultrarrápido, reduz drasticamente os tempos de carregamento, enquanto o processador de última geração garante máximo desempenho. Além disso, conta com um sistema de resfriamento otimizado para manter a performance em longas sessões de jogo e compatibilidade com jogos da geração anterior.',
     price: 4499.99,
     image: Playstation,
+  },
+  {
+    id: 7,
+    name: 'Nintendo Switch OLED',
+    description: 'Console híbrido portátil com tela OLED de 7 polegadas.',
+    fullDescription:
+      'O Nintendo Switch OLED oferece uma experiência de jogo versátil, podendo ser usado tanto na TV quanto no modo portátil. Sua tela OLED de 7 polegadas proporciona cores vibrantes e contraste aprimorado. Os Joy-Cons destacáveis garantem multiplayer imediato, e a bateria de longa duração possibilita horas de diversão.',
+    price: 2299.99,
+    image: NintendoSwitch,
+  },
+  {
+    id: 8,
+    name: 'Xbox Series X',
+    description: 'Console de última geração com suporte para 4K e 120 FPS.',
+    fullDescription:
+      'O Xbox Series X oferece gráficos realistas em 4K, SSD ultrarrápido para carregamentos instantâneos e suporte a até 120 FPS para uma jogabilidade fluida e imersiva.',
+    price: 4399.99,
+    image: XboxSeriesX,
+  },
+  {
+    id: 9,
+    name: 'Notebook Dell Inspiron 15',
+    description: 'Notebook com Intel Core i7, 16GB de RAM e SSD de 512GB.',
+    fullDescription:
+      'O Dell Inspiron 15 é ideal para trabalho e estudos, contando com processador Intel Core i7, 16GB de RAM e armazenamento SSD de 512GB, garantindo alta performance e rapidez.',
+    price: 5499.99,
+    image: NotebookDell,
+  },
+  {
+    id: 10,
+    name: 'Alexa Echo Show 8',
+    description: 'Assistente virtual com tela de 8" e integração com Alexa.',
+    fullDescription:
+      'O Echo Show 8 combina tela sensível ao toque de 8 polegadas e assistente Alexa para chamadas de vídeo, reprodução de vídeos e controle de dispositivos inteligentes.',
+    price: 799.99,
+    image: Alexa,
   },
 ];
 
