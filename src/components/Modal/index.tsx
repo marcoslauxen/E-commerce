@@ -1,12 +1,16 @@
 import HighlightOffIcon from '@mui/icons-material/HighlightOff';
 import Image from 'next/image';
 import { ReactNode } from 'react';
+import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
+import FavoriteIcon from '@mui/icons-material/Favorite';
 
 interface ModalProps {
   children: ReactNode;
   text: string;
   imageUrl: string;
   price: number;
+  isFavorite: boolean;
+  toggleFavorite: () => void;
   onClose: () => void;
   onAddToCart: () => void;
 }
@@ -16,6 +20,8 @@ export default function Modal({
   text,
   imageUrl,
   price,
+  isFavorite,
+  toggleFavorite,
   onClose,
   onAddToCart,
 }: ModalProps) {
@@ -28,6 +34,15 @@ export default function Modal({
         className="relative bg-white p-6 sm:p-8 rounded-lg shadow-lg w-full max-w-3xl flex flex-col sm:flex-row items-center gap-6"
         onClick={(e) => e.stopPropagation()}
       >
+        <div className="absolute top-2 left-2 flex p-2">
+          <button onClick={toggleFavorite} className="text-gray-500 text-2xl">
+            {isFavorite ? (
+              <FavoriteIcon className="text-red-500" />
+            ) : (
+              <FavoriteBorderIcon />
+            )}
+          </button>
+        </div>
         <button
           onClick={onClose}
           className="absolute top-2 right-2 p-2 rounded-full text-gray-500 transition"

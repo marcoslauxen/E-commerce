@@ -105,6 +105,8 @@ export default function ProductCard({ product }: ProductCardProps) {
           text={product.fullDescription}
           imageUrl={product.image.src}
           price={product.price}
+          isFavorite={isFavorite}
+          toggleFavorite={toggleFavorite}
           onClose={handleCloseModal}
           onAddToCart={handleAddToCart}
         >
