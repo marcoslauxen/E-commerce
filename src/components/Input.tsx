@@ -7,6 +7,10 @@ export default function Input() {
     setSearch(event.target.value);
   };
 
+  const handleReset = () => {
+    setSearch('');
+  };
+
   return (
     <form className="form relative w-1/2">
       <button className="absolute left-1 -translate-y-1/2 top-1/2 p-1">
@@ -40,6 +44,7 @@ export default function Input() {
       <button
         type="reset"
         className="absolute right-3 -translate-y-1/2 top-1/2 p-1"
+        onClick={handleReset}
       >
         <svg
           xmlns="http://www.w3.org/2000/svg"

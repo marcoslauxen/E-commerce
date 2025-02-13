@@ -20,9 +20,9 @@ export function CartProvider(props: { children: React.ReactNode }) {
   const { set, get } = useLocalStorage();
 
   useEffect(() => {
-    const carrinho = get('carrinho');
-    if (carrinho) {
-      setItems(carrinho);
+    const cart = get('cart');
+    if (cart) {
+      setItems(cart);
     }
   }, [get]);
 
@@ -52,7 +52,7 @@ export function CartProvider(props: { children: React.ReactNode }) {
 
   function changeItems(newItems: CartItem[]) {
     setItems(newItems);
-    set('carrinho', newItems);
+    set('cart', newItems);
   }
 
   return (

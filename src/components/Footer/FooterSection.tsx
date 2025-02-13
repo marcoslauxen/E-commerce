@@ -1,14 +1,13 @@
-export default function FooterSection({
-  title,
-  links,
-}: {
+interface FooterSectionProps {
   title: string;
   links: string[];
-}) {
+}
+
+export default function FooterSection({ title, links }: FooterSectionProps) {
   return (
-    <div>
-      <h2 className="font-bold text-lg my-4">{title}</h2>
-      <ul className="space-y-1">
+    <div className="text-center md:text-left">
+      <h2 className="font-bold text-base mb-2">{title}</h2>
+      <ul className="space-y-1 text-sm">
         {links.map((link) => (
           <li
             key={link}

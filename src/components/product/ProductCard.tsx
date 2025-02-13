@@ -15,7 +15,6 @@ export interface ProductCardProps {
 export default function ProductCard({ product }: ProductCardProps) {
   const { add } = useCart();
   const { get, set } = useLocalStorage();
-  const [cart, setCart] = useState<Product[]>([]);
   const [isOpenModal, setIsOpenModal] = useState(false);
   const [isFavorite, setIsFavorite] = useState(false);
 
@@ -25,9 +24,6 @@ export default function ProductCard({ product }: ProductCardProps) {
   }, [get, product.id]);
 
   const handleAddToCart = () => {
-    const updatedCart = [...cart, product];
-    setCart(updatedCart);
-    set('cart', updatedCart);
     add(product);
   };
 
@@ -69,7 +65,7 @@ export default function ProductCard({ product }: ProductCardProps) {
         <div className="flex justify-center p-2">
           <div className="w-[200px] h-[200px] relative bg-zinc-900 rounded-md">
             <Image
-              src={product.image}
+              src={product.image.src}
               alt={product.name}
               layout="fill"
               objectFit="contain"

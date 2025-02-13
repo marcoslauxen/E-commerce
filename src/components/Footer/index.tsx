@@ -1,40 +1,86 @@
-import SocialIcons from "./SocialIcons";
-import FooterSection from "./FooterSection";
-
-const footerSections = [
-  {
-    title: "Loja",
-    links: ["Novidades", "Promoções", "Categorias", "Mais Vendidos"],
-  },
-  {
-    title: "Suporte",
-    links: [
-      "Atendimento",
-      "Política de Troca",
-      "Entrega e Frete",
-      "Perguntas Frequentes",
-    ],
-  },
-  { title: "Sobre Nós", links: ["Nossa História", "Blog", "Contato"] },
-];
-
 export default function Footer() {
   return (
-    <footer className="w-full bg-zinc-800 text-white py-8 px-6 md:px-12">
-      <div className="container mx-auto flex flex-col items-center text-center md:text-left md:flex-row md:items-start md:justify-between gap-8">
-        <div className="w-full flex justify-center md:justify-start">
-          <SocialIcons />
+    <footer className="w-full bg-zinc-900 text-white py-10 px-6 text-sm">
+      <div className="container mx-auto grid grid-cols-1 md:grid-cols-4 gap-8 text-center ">
+        <div>
+          <h2 className="text-lg font-bold">Lauxen Store</h2>
+          <p className="text-gray-400 mt-2 max-w-sm mx-auto md:mx-0">
+            Oferecemos os melhores produtos com segurança e qualidade. Compre
+            com confiança e aproveite ofertas exclusivas!
+          </p>
         </div>
 
-        <div className="w-full flex flex-col sm:flex-row sm:justify-center sm:gap-8 md:gap-16">
-          {footerSections.map(({ title, links }) => (
-            <FooterSection key={title} title={title} links={links} />
-          ))}
+        <div>
+          <h3 className="font-semibold">Descubra Lauxen</h3>
+          <ul className="mt-3 space-y-2">
+            <li>
+              <a href="#" className="text-gray-400 hover:text-white transition">
+                Sobre Nós
+              </a>
+            </li>
+            <li>
+              <a href="#" className="text-gray-400 hover:text-white transition">
+                Atendimento
+              </a>
+            </li>
+            <li>
+              <a href="#" className="text-gray-400 hover:text-white transition">
+                FAQ
+              </a>
+            </li>
+          </ul>
+        </div>
+
+        <div>
+          <h3 className="font-semibold">Serviços</h3>
+          <ul className="mt-3 space-y-2">
+            <li>
+              <a href="#" className="text-gray-400 hover:text-white transition">
+                Entrega Rápida
+              </a>
+            </li>
+            <li>
+              <a href="#" className="text-gray-400 hover:text-white transition">
+                Programa de Fidelidade
+              </a>
+            </li>
+            <li>
+              <a href="#" className="text-gray-400 hover:text-white transition">
+                Cartão Presente
+              </a>
+            </li>
+            <li>
+              <a href="#" className="text-gray-400 hover:text-white transition">
+                Marketplace
+              </a>
+            </li>
+          </ul>
+        </div>
+
+        <div>
+          <h3 className="font-semibold">Políticas</h3>
+          <ul className="mt-3 space-y-2">
+            <li>
+              <a href="#" className="text-gray-400 hover:text-white transition">
+                Política de Privacidade
+              </a>
+            </li>
+            <li>
+              <a href="#" className="text-gray-400 hover:text-white transition">
+                Termos e Condições
+              </a>
+            </li>
+            <li>
+              <a href="#" className="text-gray-400 hover:text-white transition">
+                Política de Reembolso
+              </a>
+            </li>
+          </ul>
         </div>
       </div>
 
-      <div className="text-center text-sm text-gray-400 mt-6">
-        &copy; {new Date().getFullYear()} Seu E-commerce. Todos os direitos
+      <div className="border-t border-gray-700 mt-8 pt-4 text-center text-xs text-gray-500">
+        &copy; {new Date().getFullYear()} Lauxen Store. Todos os direitos
         reservados.
       </div>
     </footer>
