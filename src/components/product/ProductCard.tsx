@@ -1,12 +1,13 @@
 'use client';
+
 import useCart from '@/data/hooks/useCart';
-import Product from '@/data/model/Product';
 import Image from 'next/image';
 import { useEffect, useState } from 'react';
 import Modal from '../Modal';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import useLocalStorage from '@/data/hooks/useLocalStorage';
+import Product from '@/data/model/Product';
 
 export interface ProductCardProps {
   product: Product;
@@ -49,6 +50,11 @@ export default function ProductCard({ product }: ProductCardProps) {
   return (
     <>
       <div className="w-56 md:w-60 bg-zinc-900 rounded-lg shadow-md overflow-hidden transform transition-all duration-300 hover:scale-105">
+        {product.id === 2 && (
+          <div className="absolute top-0 right-0 bg-red-500 text-white text-xs font-semibold p-1">
+            Promoção
+          </div>
+        )}
         <div className="flex justify-between p-2">
           <button
             onClick={toggleFavorite}
@@ -65,9 +71,10 @@ export default function ProductCard({ product }: ProductCardProps) {
         <div className="flex justify-center p-2">
           <div className="w-[200px] h-[200px] relative bg-zinc-900 rounded-md">
             <Image
-              src={product.image.src}
+              src={product.image}
               alt={product.name}
-              layout="fill"
+              width={200}
+              height={200}
               objectFit="contain"
               className="p-2"
               onClick={handleOpenModal}
@@ -80,12 +87,22 @@ export default function ProductCard({ product }: ProductCardProps) {
           <p className="text-xs text-gray-400">{product.description}</p>
 
           <div className="flex justify-between items-center mt-1">
-            <span className="text-base font-semibold text-green-400">
-              {`R$ ${product.price?.toLocaleString('pt-BR', {
-                minimumFractionDigits: 2,
-                maximumFractionDigits: 2,
-              })}`}
-            </span>
+            <div className="flex flex-col gap-1">
+              {product.originalprice > 0 && (
+                <span className="text-sm font-semibold text-red-400 line-through">
+                  {`R$ ${product.originalprice.toLocaleString('pt-BR', {
+                    minimumFractionDigits: 2,
+                    maximumFractionDigits: 2,
+                  })}`}
+                </span>
+              )}
+              <span className="text-base font-semibold text-green-400">
+                {`R$ ${product.price.toLocaleString('pt-BR', {
+                  minimumFractionDigits: 2,
+                  maximumFractionDigits: 2,
+                })}`}
+              </span>
+            </div>
             <button
               onClick={handleAddToCart}
               className="bg-blue-500 text-white text-xs px-3 py-1.5 rounded-full transition-all duration-300 hover:bg-blue-600"
@@ -98,8 +115,8 @@ export default function ProductCard({ product }: ProductCardProps) {
 
       {isOpenModal && (
         <Modal
-          text={product.fullDescription}
-          imageUrl={product.image.src}
+          text={product.fulldescription}
+          imageUrl={product.image}
           price={product.price}
           isFavorite={isFavorite}
           toggleFavorite={toggleFavorite}
