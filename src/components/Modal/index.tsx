@@ -9,6 +9,7 @@ interface ModalProps {
   text: string;
   imageUrl: string;
   price: number;
+  originalprice: number;
   isFavorite: boolean;
   toggleFavorite: () => void;
   onClose: () => void;
@@ -20,6 +21,7 @@ export default function Modal({
   text,
   imageUrl,
   price,
+  originalprice,
   isFavorite,
   toggleFavorite,
   onClose,
@@ -71,12 +73,22 @@ export default function Modal({
           </p>
 
           <div className="flex justify-between items-center mt-2">
-            <span className="text-lg font-bold text-green-500">
-              {`R$ ${price?.toLocaleString('pt-BR', {
-                minimumFractionDigits: 2,
-                maximumFractionDigits: 2,
-              })}`}
-            </span>
+            <div className="flex flex-col  justify-center items-center">
+              {originalprice > 0 && (
+                <span className="text-sm font-semibold text-red-400 line-through">
+                  {Number(originalprice).toLocaleString('pt-BR', {
+                    style: 'currency',
+                    currency: 'BRL',
+                  })}
+                </span>
+              )}
+              <span className="text-lg font-bold text-green-500">
+                {Number(price).toLocaleString('pt-BR', {
+                  style: 'currency',
+                  currency: 'BRL',
+                })}
+              </span>
+            </div>
             <button
               onClick={onAddToCart}
               className="bg-blue-500 text-white text-sm px-4 py-2 rounded-full transition-all duration-300 hover:bg-blue-600"

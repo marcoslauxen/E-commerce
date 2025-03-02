@@ -1,5 +1,5 @@
 import CartItem from '@/data/model/CartItem';
-import { IconMinus, IconPlus, IconX } from '@tabler/icons-react';
+import { IconMinus, IconPlus, IconTrash, IconX } from '@tabler/icons-react';
 import Image from 'next/image';
 
 export interface CartItemAreaProps {
@@ -58,7 +58,7 @@ export default function CartItemArea(props: CartItemAreaProps) {
 
       <div className="flex gap-2 items-center px-5">
         <button onClick={() => props.remove?.(props.item)} className="p-1">
-          <IconMinus />
+          {props.item.quantity > 1 ? <IconMinus /> : <IconTrash />}
         </button>
         <span className="flex px-4 py-2 rounded-md bg-black">
           {props.item.quantity}

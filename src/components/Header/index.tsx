@@ -10,7 +10,7 @@ export default function Header() {
   const showInput = pathname === '/';
 
   return (
-    <header className="flex justify-between items-center bg-zinc-800 h-20 px-10">
+    <header className="flex justify-between items-center bg-zinc-900 h-20 px-10">
       <Logo />
       {showInput && <Input />}
       <Cart />

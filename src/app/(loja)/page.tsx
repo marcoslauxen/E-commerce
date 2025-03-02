@@ -6,7 +6,6 @@ import Page from '@/components/template/Page';
 import api from '@/data/services/api';
 import useCart from '@/data/hooks/useCart';
 import Product from '@/data/model/Product';
-
 export default function Home() {
   const { search } = useCart();
   const [products, setProducts] = useState<Product[]>([]);

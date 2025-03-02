@@ -14,15 +14,15 @@ const socialLinks = [
 
 export default function SocialIcons() {
   return (
-    <div className="flex gap-3">
+    <div className="flex gap-4 justify-center md:justify-start mt-4">
       {socialLinks.map(({ icon: Icon, label }) => (
-        <Icon
-          key={label}
-          size={24}
-          stroke={1.5}
-          className="cursor-pointer hover:text-gray-300 transition"
-          aria-label={label}
-        />
+        <a key={label} aria-label={label} target="_blank">
+          <Icon
+            size={28}
+            stroke={1.5}
+            className="cursor-pointer text-gray-400 hover:text-white transition"
+          />
+        </a>
       ))}
     </div>
   );

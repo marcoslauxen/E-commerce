@@ -90,17 +90,17 @@ export default function ProductCard({ product }: ProductCardProps) {
             <div className="flex flex-col gap-1">
               {product.originalprice > 0 && (
                 <span className="text-sm font-semibold text-red-400 line-through">
-                  {`R$ ${product.originalprice.toLocaleString('pt-BR', {
-                    minimumFractionDigits: 2,
-                    maximumFractionDigits: 2,
-                  })}`}
+                  {Number(product.originalprice).toLocaleString('pt-BR', {
+                    style: 'currency',
+                    currency: 'BRL',
+                  })}
                 </span>
               )}
               <span className="text-base font-semibold text-green-400">
-                {`R$ ${product.price.toLocaleString('pt-BR', {
-                  minimumFractionDigits: 2,
-                  maximumFractionDigits: 2,
-                })}`}
+                {Number(product.price).toLocaleString('pt-BR', {
+                  style: 'currency',
+                  currency: 'BRL',
+                })}
               </span>
             </div>
             <button
@@ -118,6 +118,7 @@ export default function ProductCard({ product }: ProductCardProps) {
           text={product.fulldescription}
           imageUrl={product.image}
           price={product.price}
+          originalprice={product.originalprice}
           isFavorite={isFavorite}
           toggleFavorite={toggleFavorite}
           onClose={handleCloseModal}
