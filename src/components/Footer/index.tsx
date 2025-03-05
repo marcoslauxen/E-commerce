@@ -1,35 +1,42 @@
+import { useState } from 'react';
 import FooterSection from './FooterSection';
 import SocialIcons from './SocialIcons';
+import TermsAndConditionsModal from '../Modal/TermsAndConditionsModal';
+import TermsAndConditions from '../TermsAndConditions';
 
 const footerSections = [
   {
     title: 'Descubra Lauxen',
-    links: [
-      { label: 'Sobre Nós', href: '#' },
-      { label: 'Atendimento', href: '#' },
-      { label: 'FAQ', href: '#' },
-    ],
+    links: ['Sobre Nós', 'Atendimento', 'FAQ'],
   },
   {
     title: 'Serviços',
     links: [
-      { label: 'Entrega Rápida', href: '#' },
-      { label: 'Programa de Fidelidade', href: '#' },
-      { label: 'Cartão Presente', href: '#' },
-      { label: 'Marketplace', href: '#' },
+      'Entrega Rápida',
+      'Programa de Fidelidade',
+      'Cartão Presente',
+      'Marketplace',
     ],
   },
   {
     title: 'Políticas',
     links: [
-      { label: 'Política de Privacidade', href: '#' },
-      { label: 'Termos e Condições', href: '#' },
-      { label: 'Política de Reembolso', href: '#' },
+      'Política de Privacidade',
+      'Termos e Condições',
+      'Política de Reembolso',
     ],
   },
 ];
 
 export default function Footer() {
+  const [isTermsModalOpen, setIsTermsModalOpen] = useState(false);
+
+  const handleLinkClick = (link: string) => {
+    if (link === 'Termos e Condições') {
+      setIsTermsModalOpen(true);
+    }
+  };
+
   return (
     <footer className="w-full bg-zinc-900 text-white py-10 px-6 text-sm">
       <div className="container mx-auto grid grid-cols-1 md:grid-cols-4 gap-8 text-center md:text-left">
@@ -47,6 +54,7 @@ export default function Footer() {
             key={section.title}
             title={section.title}
             links={section.links}
+            onLinkClick={handleLinkClick}
           />
         ))}
       </div>
@@ -55,6 +63,12 @@ export default function Footer() {
         &copy; {new Date().getFullYear()} Lauxen Store. Todos os direitos
         reservados.
       </div>
+
+      {isTermsModalOpen && (
+        <TermsAndConditionsModal onClose={() => setIsTermsModalOpen(false)}>
+          <TermsAndConditions />
+        </TermsAndConditionsModal>
+      )}
     </footer>
   );
 }

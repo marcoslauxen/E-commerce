@@ -1,21 +1,26 @@
 interface FooterSectionProps {
   title: string;
-  links: { label: string; href: string }[];
+  links: string[];
+  onLinkClick?: (link: string) => void;
 }
 
-export default function FooterSection({ title, links }: FooterSectionProps) {
+export default function FooterSection({
+  title,
+  links,
+  onLinkClick,
+}: FooterSectionProps) {
   return (
-    <div className="text-center md:text-left">
-      <h2 className="font-bold text-base mb-3">{title}</h2>
-      <ul className="space-y-2 text-sm">
-        {links.map(({ label, href }) => (
-          <li key={label}>
-            <a
-              href={href}
-              className="cursor-pointer text-gray-400 hover:text-white transition"
+    <div>
+      <h3 className="text-lg font-semibold">{title}</h3>
+      <ul className="mt-3 space-y-2">
+        {links.map((link) => (
+          <li key={link}>
+            <button
+              className="text-gray-400 hover:text-white transition"
+              onClick={() => onLinkClick?.(link)}
             >
-              {label}
-            </a>
+              {link}
+            </button>
           </li>
         ))}
       </ul>
